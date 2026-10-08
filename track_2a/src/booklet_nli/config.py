@@ -21,6 +21,15 @@ class Settings(BaseSettings):
 
     dataset: Path = TRACK_DIR / "data" / "ost" / "v1.1.jsonl"
     beginner_prompt: Path = TRACK_DIR / "data" / "prompts" / "beginner.txt"
+    # The booklets exceed the 100 MB limit of data/, so they are downloaded into this cache and checked against the manifest.
+    booklets_dir: Path = TRACK_DIR / "data" / "booklets"
+    booklet_manifest: Path = TRACK_DIR / "data" / "ost" / "booklets.json"
+    gold_pages: Path = TRACK_DIR / "data" / "ost" / "gold_pages.jsonl"
+    # Retrieval: a cross-language claim is translated into the booklet's language before BM25 over the pages.
+    translation_model: str = "swiss-ai/Apertus-v1.5-8B"
+    translation_max_tokens: int = 200
+    user_agent: str = "booklet-nli/0.1 (Hack Apertus 2A)"
+    fetch_delay_s: float = 1.0
     # Share of the public set used to develop the prompts; the rest is only scored.
     dev_share: float = 0.2
     split_seed: int = 20261008

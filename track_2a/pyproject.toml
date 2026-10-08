@@ -5,9 +5,12 @@ description = "Multilingual natural language inference over Swiss official votin
 license = "Apache-2.0"
 requires-python = ">=3.12"
 dependencies = [
+    "fonttools>=4.50",
     "openai>=1.50",
+    "py3langid>=0.3",
     "pydantic>=2.8",
     "pydantic-settings>=2.4",
+    "pypdf>=5.0",
     "pyyaml>=6.0",
 ]
 

@@ -25,3 +25,6 @@ build/
 .DS_Store
 .idea/
 .vscode/
+# Downloaded at run time; data/ost/booklets.json pins their checksums.
+data/booklets/
+.venv/
