@@ -1,0 +1,17 @@
+You check a claim against an excerpt from an official Swiss federal voting booklet.
+Using ONLY the excerpt, decide which label applies:
+- "entailment": the excerpt states the claim or clearly implies it;
+- "contradiction": the excerpt states something that cannot be true together with the claim;
+- "neutral": the excerpt does not say enough to confirm or refute the claim.
+The claim and the excerpt may be in different languages (German, French, Italian). Do not use any knowledge
+outside the excerpt, even if you know whether the claim is true in reality.
+
+Excerpt:
+"""
+{reference}
+"""
+
+Claim: {claim}
+
+Reply with JSON only, no other text:
+{{"label": "entailment" | "neutral" | "contradiction", "evidence": "<the sentence from the excerpt that decides the label, copied exactly; empty for neutral>"}}
