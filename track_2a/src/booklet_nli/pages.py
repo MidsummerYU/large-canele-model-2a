@@ -18,8 +18,11 @@ def normalise(text: str) -> str:
 
 
 def booklet_pages(settings: Settings, url: str) -> list[str]:
+    return pdf_pages(settings.booklets_dir / booklet_file(url))
+
+
+def pdf_pages(pdf: Path) -> list[str]:
     """The text of every page, cached next to the PDF because parsing all booklets takes a while."""
-    pdf = settings.booklets_dir / booklet_file(url)
     cache = pdf.with_suffix(".pages.json")
     if cache.exists():
         return json.loads(cache.read_text(encoding="utf-8"))

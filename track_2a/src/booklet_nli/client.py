@@ -29,9 +29,22 @@ class ChatRequest(BaseModel):
         return hashlib.sha256(self.model_dump_json().encode()).hexdigest()
 
 
+class RequestSummary(BaseModel):
+    """What was asked, without the prompt: whole-booklet prompts would push the recordings past the size limits.
+
+    The key is the hash of the full request, so a replay still checks that the prompt is unchanged.
+    """
+
+    model: str
+    temperature: float
+    max_tokens: int
+    sample: int
+    prompt_chars: int
+
+
 class Recording(BaseModel):
     key: str
-    request: ChatRequest
+    request: RequestSummary
     content: str
     served_model: str | None
     usage: dict[str, int] | None
@@ -76,7 +89,13 @@ class RecordingClient:
         )
         recording = Recording(
             key=key,
-            request=request,
+            request=RequestSummary(
+                model=request.model,
+                temperature=request.temperature,
+                max_tokens=request.max_tokens,
+                sample=request.sample,
+                prompt_chars=sum(len(content) for _, content in request.messages),
+            ),
             content=response.choices[0].message.content or "",
             served_model=response.model,
             usage=response.usage.model_dump(include={"prompt_tokens", "completion_tokens", "total_tokens"})

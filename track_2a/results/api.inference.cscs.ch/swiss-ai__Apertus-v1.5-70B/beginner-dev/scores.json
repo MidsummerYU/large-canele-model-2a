@@ -29,7 +29,9 @@
       "unparsed": 0,
       "evidence_verbatim": 0.7612612612612613,
       "input_tokens": 613791,
-      "latency_mean_ms": 1388.4864864864865,
+      "evidence_page_hit": null,
+      "retrieval_hit": null,
+      "latency_mean_ms": 1388.6824324324325,
       "latency_p95_ms": 3336.95
     }
   },
@@ -63,7 +65,9 @@
       "unparsed": 0,
       "evidence_verbatim": 0.7708333333333334,
       "input_tokens": 401118,
-      "latency_mean_ms": 1323.0309278350514,
+      "evidence_page_hit": null,
+      "retrieval_hit": null,
+      "latency_mean_ms": 1323.3350515463917,
       "latency_p95_ms": 3011.75
     },
     "same-language": {
@@ -95,7 +99,9 @@
       "unparsed": 0,
       "evidence_verbatim": 0.7435897435897436,
       "input_tokens": 212673,
-      "latency_mean_ms": 1512.9803921568628,
+      "evidence_page_hit": null,
+      "retrieval_hit": null,
+      "latency_mean_ms": 1512.9705882352941,
       "latency_p95_ms": 3890.0
     }
   },
@@ -129,7 +135,9 @@
       "unparsed": 0,
       "evidence_verbatim": 0.7464788732394366,
       "input_tokens": 197615,
-      "latency_mean_ms": 1457.6666666666667,
+      "evidence_page_hit": null,
+      "retrieval_hit": null,
+      "latency_mean_ms": 1456.7070707070707,
       "latency_p95_ms": 3684.0
     },
     "fr": {
@@ -161,7 +169,9 @@
       "unparsed": 0,
       "evidence_verbatim": 0.7972972972972973,
       "input_tokens": 216487,
-      "latency_mean_ms": 1443.7171717171718,
+      "evidence_page_hit": null,
+      "retrieval_hit": null,
+      "latency_mean_ms": 1443.7070707070707,
       "latency_p95_ms": 4249.0
     },
     "it": {
@@ -193,7 +203,9 @@
       "unparsed": 0,
       "evidence_verbatim": 0.7402597402597403,
       "input_tokens": 199689,
-      "latency_mean_ms": 1262.8061224489795,
+      "evidence_page_hit": null,
+      "retrieval_hit": null,
+      "latency_mean_ms": 1264.3775510204082,
       "latency_p95_ms": 3296.4
     }
   },
@@ -227,7 +239,9 @@
       "unparsed": 0,
       "evidence_verbatim": 0.7647058823529411,
       "input_tokens": 191674,
-      "latency_mean_ms": 1550.5494505494505,
+      "evidence_page_hit": null,
+      "retrieval_hit": null,
+      "latency_mean_ms": 1552.2417582417581,
       "latency_p95_ms": 4703.0
     },
     "fr": {
@@ -259,8 +273,10 @@
       "unparsed": 0,
       "evidence_verbatim": 0.7804878048780488,
       "input_tokens": 218600,
-      "latency_mean_ms": 1203.8070175438597,
-      "latency_p95_ms": 2522.25
+      "evidence_page_hit": null,
+      "retrieval_hit": null,
+      "latency_mean_ms": 1202.9649122807018,
+      "latency_p95_ms": 2522.0
     },
     "it": {
       "n": 91,
@@ -291,6 +307,8 @@
       "unparsed": 0,
       "evidence_verbatim": 0.7361111111111112,
       "input_tokens": 203517,
+      "evidence_page_hit": null,
+      "retrieval_hit": null,
       "latency_mean_ms": 1457.7802197802198,
       "latency_p95_ms": 3890.0
     }

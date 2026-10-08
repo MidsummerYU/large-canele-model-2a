@@ -5,7 +5,7 @@ from statistics import mean
 
 from py3langid.langid import MODEL_FILE, LanguageIdentifier
 
-from booklet_nli.client import ChatRequest, RecordingClient
+from booklet_nli.client import ChatRequest, Recording, RecordingClient
 from booklet_nli.config import Settings
 from booklet_nli.pages import normalise
 
@@ -41,10 +41,12 @@ def bm25(query: str, documents: list[str], k1: float = 1.5, b: float = 0.75) -> 
     return scores
 
 
-def query_in_booklet_language(claim: str, booklet_language: str, client: RecordingClient, settings: Settings) -> str:
-    """The claim as used for retrieval: translated when it is not in the booklet's language."""
+def query_in_booklet_language(
+    claim: str, booklet_language: str, client: RecordingClient, settings: Settings
+) -> tuple[str, Recording | None]:
+    """The claim as used for retrieval, translated when it is not in the booklet's language, and the translation call."""
     if language(claim) == booklet_language:
-        return claim
+        return claim, None
     request = ChatRequest(
         model=settings.translation_model,
         messages=(("user", TRANSLATE_PROMPT.format(language=LANGUAGES[booklet_language], text=claim)),),
@@ -52,7 +54,8 @@ def query_in_booklet_language(claim: str, booklet_language: str, client: Recordi
         max_tokens=settings.translation_max_tokens,
         sample=0,
     )
-    return client.chat(request).content.strip()
+    recording = client.chat(request)
+    return recording.content.strip(), recording
 
 
 def top_pages(query: str, pages: list[str], k: int) -> list[int]:

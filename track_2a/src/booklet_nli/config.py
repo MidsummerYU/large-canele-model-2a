@@ -27,6 +27,9 @@ class Settings(BaseSettings):
     gold_pages: Path = TRACK_DIR / "data" / "ost" / "gold_pages.jsonl"
     # Retrieval: a cross-language claim is translated into the booklet's language before BM25 over the pages.
     translation_model: str = "swiss-ai/Apertus-v1.5-8B"
+    # Pages given to the model in the advanced task; None gives the whole booklet (the challenge's baseline).
+    context_pages: int | None = 5
+    advanced_prompt: Path = TRACK_DIR / "data" / "prompts" / "advanced.txt"
     translation_max_tokens: int = 200
     user_agent: str = "booklet-nli/0.1 (Hack Apertus 2A)"
     fetch_delay_s: float = 1.0

@@ -8,6 +8,7 @@ from booklet_nli.data import LABELS
 class Verdict(BaseModel):
     label: int | None
     evidence: str
+    page: int | None = None
 
 
 def parse_verdict(text: str) -> Verdict:
@@ -23,7 +24,12 @@ def parse_verdict(text: str) -> Verdict:
         named = [label for label in LABELS if label in text.lower()]
         name = named[0] if len(named) == 1 else ""
     evidence = reply.get("evidence", "")
-    return Verdict(label=LABELS.index(name) if name else None, evidence=evidence if isinstance(evidence, str) else "")
+    page = reply.get("page")
+    return Verdict(
+        label=LABELS.index(name) if name else None,
+        evidence=evidence if isinstance(evidence, str) else "",
+        page=page if isinstance(page, int) and not isinstance(page, bool) else None,
+    )
 
 
 def _normalise(text: str) -> str:

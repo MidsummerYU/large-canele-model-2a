@@ -1,0 +1,15 @@
+You check a claim against an official Swiss federal voting booklet. Below are pages of the booklet, each marked
+with its page number. The claim concerns this vote: {vote}
+Using ONLY these pages, decide which label applies:
+- "entailment": the booklet states the claim or clearly implies it;
+- "contradiction": the booklet states something that cannot be true together with the claim;
+- "neutral": the booklet does not say enough to confirm or refute the claim.
+The claim and the booklet may be in different languages (German, French, Italian). Do not use any knowledge
+outside these pages, even if you know whether the claim is true in reality.
+
+{pages}
+
+Claim: {claim}
+
+Reply with JSON only, no other text:
+{{"label": "entailment" | "neutral" | "contradiction", "page": <number of the page with the evidence, or null for neutral>, "evidence": "<the sentence from that page that decides the label, copied exactly; empty for neutral>"}}
