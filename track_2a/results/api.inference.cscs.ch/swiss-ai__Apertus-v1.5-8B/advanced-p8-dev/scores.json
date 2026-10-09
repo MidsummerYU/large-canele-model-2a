@@ -1,0 +1,316 @@
+{
+  "all": {
+    "all": {
+      "n": 296,
+      "macro_f1": 0.8171860906226893,
+      "f1": {
+        "entailment": 0.8920187793427229,
+        "neutral": 0.8506787330316742,
+        "contradiction": 0.7088607594936709
+      },
+      "accuracy": 0.8277027027027027,
+      "confusion": {
+        "entailment": {
+          "entailment": 95,
+          "neutral": 3,
+          "contradiction": 0
+        },
+        "neutral": {
+          "entailment": 2,
+          "neutral": 94,
+          "contradiction": 3
+        },
+        "contradiction": {
+          "entailment": 18,
+          "neutral": 25,
+          "contradiction": 56
+        }
+      },
+      "unparsed": 0,
+      "evidence_verbatim": 0.3218390804597701,
+      "input_tokens": 1258074,
+      "evidence_page_hit": 0.6609195402298851,
+      "retrieval_hit": 1.0,
+      "latency_mean_ms": 2472.2702702702704,
+      "latency_p95_ms": 2307.9
+    }
+  },
+  "pairing": {
+    "cross-language": {
+      "n": 194,
+      "macro_f1": 0.7726840014411258,
+      "f1": {
+        "entailment": 0.8759124087591241,
+        "neutral": 0.7945205479452055,
+        "contradiction": 0.6476190476190476
+      },
+      "accuracy": 0.7835051546391752,
+      "confusion": {
+        "entailment": {
+          "entailment": 60,
+          "neutral": 3,
+          "contradiction": 0
+        },
+        "neutral": {
+          "entailment": 2,
+          "neutral": 58,
+          "contradiction": 2
+        },
+        "contradiction": {
+          "entailment": 12,
+          "neutral": 23,
+          "contradiction": 34
+        }
+      },
+      "unparsed": 0,
+      "evidence_verbatim": 0.2909090909090909,
+      "input_tokens": 838452,
+      "evidence_page_hit": 0.6181818181818182,
+      "retrieval_hit": 1.0,
+      "latency_mean_ms": 2746.9123711340208,
+      "latency_p95_ms": 2467.25
+    },
+    "same-language": {
+      "n": 102,
+      "macro_f1": 0.9037471036080768,
+      "f1": {
+        "entailment": 0.9210526315789475,
+        "neutral": 0.9599999999999999,
+        "contradiction": 0.8301886792452831
+      },
+      "accuracy": 0.9117647058823529,
+      "confusion": {
+        "entailment": {
+          "entailment": 35,
+          "neutral": 0,
+          "contradiction": 0
+        },
+        "neutral": {
+          "entailment": 0,
+          "neutral": 36,
+          "contradiction": 1
+        },
+        "contradiction": {
+          "entailment": 6,
+          "neutral": 2,
+          "contradiction": 22
+        }
+      },
+      "unparsed": 0,
+      "evidence_verbatim": 0.375,
+      "input_tokens": 419622,
+      "evidence_page_hit": 0.734375,
+      "retrieval_hit": 1.0,
+      "latency_mean_ms": 1949.9117647058824,
+      "latency_p95_ms": 2149.05
+    }
+  },
+  "claim_language": {
+    "de": {
+      "n": 99,
+      "macro_f1": 0.7934729745997351,
+      "f1": {
+        "entailment": 0.8533333333333334,
+        "neutral": 0.8732394366197183,
+        "contradiction": 0.6538461538461537
+      },
+      "accuracy": 0.8080808080808081,
+      "confusion": {
+        "entailment": {
+          "entailment": 32,
+          "neutral": 1,
+          "contradiction": 0
+        },
+        "neutral": {
+          "entailment": 0,
+          "neutral": 31,
+          "contradiction": 2
+        },
+        "contradiction": {
+          "entailment": 10,
+          "neutral": 6,
+          "contradiction": 17
+        }
+      },
+      "unparsed": 0,
+      "evidence_verbatim": 0.26229508196721313,
+      "input_tokens": 414388,
+      "evidence_page_hit": 0.6557377049180327,
+      "retrieval_hit": 1.0,
+      "latency_mean_ms": 5191.525252525253,
+      "latency_p95_ms": 4546.0
+    },
+    "fr": {
+      "n": 99,
+      "macro_f1": 0.8534540576794097,
+      "f1": {
+        "entailment": 0.9014084507042254,
+        "neutral": 0.8732394366197183,
+        "contradiction": 0.7857142857142856
+      },
+      "accuracy": 0.8585858585858586,
+      "confusion": {
+        "entailment": {
+          "entailment": 32,
+          "neutral": 1,
+          "contradiction": 0
+        },
+        "neutral": {
+          "entailment": 1,
+          "neutral": 31,
+          "contradiction": 1
+        },
+        "contradiction": {
+          "entailment": 5,
+          "neutral": 6,
+          "contradiction": 22
+        }
+      },
+      "unparsed": 0,
+      "evidence_verbatim": 0.47540983606557374,
+      "input_tokens": 426541,
+      "evidence_page_hit": 0.7540983606557377,
+      "retrieval_hit": 1.0,
+      "latency_mean_ms": 1153.919191919192,
+      "latency_p95_ms": 2260.0
+    },
+    "it": {
+      "n": 98,
+      "macro_f1": 0.8051665722022797,
+      "f1": {
+        "entailment": 0.9253731343283582,
+        "neutral": 0.810126582278481,
+        "contradiction": 0.6799999999999999
+      },
+      "accuracy": 0.8163265306122449,
+      "confusion": {
+        "entailment": {
+          "entailment": 31,
+          "neutral": 1,
+          "contradiction": 0
+        },
+        "neutral": {
+          "entailment": 1,
+          "neutral": 32,
+          "contradiction": 0
+        },
+        "contradiction": {
+          "entailment": 3,
+          "neutral": 13,
+          "contradiction": 17
+        }
+      },
+      "unparsed": 0,
+      "evidence_verbatim": 0.21153846153846154,
+      "input_tokens": 417145,
+      "evidence_page_hit": 0.5576923076923077,
+      "retrieval_hit": 1.0,
+      "latency_mean_ms": 1057.0714285714287,
+      "latency_p95_ms": 2180.4
+    }
+  },
+  "reference_language": {
+    "de": {
+      "n": 91,
+      "macro_f1": 0.7238813638786664,
+      "f1": {
+        "entailment": 0.8529411764705881,
+        "neutral": 0.7605633802816902,
+        "contradiction": 0.5581395348837209
+      },
+      "accuracy": 0.7472527472527473,
+      "confusion": {
+        "entailment": {
+          "entailment": 29,
+          "neutral": 2,
+          "contradiction": 0
+        },
+        "neutral": {
+          "entailment": 2,
+          "neutral": 27,
+          "contradiction": 1
+        },
+        "contradiction": {
+          "entailment": 6,
+          "neutral": 12,
+          "contradiction": 12
+        }
+      },
+      "unparsed": 0,
+      "evidence_verbatim": 0.2,
+      "input_tokens": 378859,
+      "evidence_page_hit": 0.7,
+      "retrieval_hit": 1.0,
+      "latency_mean_ms": 2201.2087912087914,
+      "latency_p95_ms": 3392.8
+    },
+    "fr": {
+      "n": 114,
+      "macro_f1": 0.8290715156118945,
+      "f1": {
+        "entailment": 0.9047619047619048,
+        "neutral": 0.8705882352941177,
+        "contradiction": 0.711864406779661
+      },
+      "accuracy": 0.8421052631578947,
+      "confusion": {
+        "entailment": {
+          "entailment": 38,
+          "neutral": 1,
+          "contradiction": 0
+        },
+        "neutral": {
+          "entailment": 0,
+          "neutral": 37,
+          "contradiction": 0
+        },
+        "contradiction": {
+          "entailment": 7,
+          "neutral": 10,
+          "contradiction": 21
+        }
+      },
+      "unparsed": 0,
+      "evidence_verbatim": 0.3484848484848485,
+      "input_tokens": 487189,
+      "evidence_page_hit": 0.7272727272727273,
+      "retrieval_hit": 1.0,
+      "latency_mean_ms": 2870.1754385964914,
+      "latency_p95_ms": 2363.5
+    },
+    "it": {
+      "n": 91,
+      "macro_f1": 0.8875127604635801,
+      "f1": {
+        "entailment": 0.9180327868852458,
+        "neutral": 0.923076923076923,
+        "contradiction": 0.8214285714285714
+      },
+      "accuracy": 0.8901098901098901,
+      "confusion": {
+        "entailment": {
+          "entailment": 28,
+          "neutral": 0,
+          "contradiction": 0
+        },
+        "neutral": {
+          "entailment": 0,
+          "neutral": 30,
+          "contradiction": 2
+        },
+        "contradiction": {
+          "entailment": 5,
+          "neutral": 3,
+          "contradiction": 23
+        }
+      },
+      "unparsed": 0,
+      "evidence_verbatim": 0.39655172413793105,
+      "input_tokens": 392026,
+      "evidence_page_hit": 0.5517241379310345,
+      "retrieval_hit": 1.0,
+      "latency_mean_ms": 2244.8571428571427,
+      "latency_p95_ms": 2226.4
+    }
+  }
+}
