@@ -7,6 +7,7 @@ from booklet_nli.booklets import booklet_file, fetch_booklets
 from booklet_nli.data import Case, beginner_input, load_cases, split
 from booklet_nli.pages import GoldPages
 from booklet_nli.predict import Prediction, predict_all
+from booklet_nli.runs import Manifest, run_settings
 from booklet_nli.score import Scores, breakdown
 
 OUTPUT_EXCLUDE = {"parsed", "evidence_verbatim", "context_pages"}
@@ -45,6 +46,33 @@ def _write_predictions(predictions: list[Prediction], path: Path) -> None:
             f.write(json.dumps(p.model_dump(exclude=OUTPUT_EXCLUDE, exclude_none=True), ensure_ascii=False) + "\n")
 
 
+class ScoresMismatchError(AssertionError):
+    pass
+
+
+def run_evaluation(settings: Settings, task: str, split_name: str, mode: str, prompts: dict[str, str], update: bool) -> Path:
+    """Predict and score one split; unless `update`, the scores must equal the committed ones."""
+    cases = split(load_cases(settings.dataset), settings.dev_share, settings.split_seed)[split_name]
+    if task == "beginner":
+        items, gold, run = [beginner_input(c) for c in cases], None, f"beginner-{split_name}"
+    else:
+        fetch_booklets(settings, [c.booklet_url for c in cases])
+        items, gold = [advanced_input(c, settings) for c in cases], GoldPages.load(settings.gold_pages)
+        context = "full" if settings.context_pages is None else f"p{settings.context_pages}"
+        run = f"advanced-{context}-{settings.advanced_prompt.stem}-{split_name}"
+    predictions = predict_all(items, settings, mode, prompts)
+    out_dir = settings.results_dir / settings.run_dir() / run
+    table = breakdown(cases, predictions, gold)
+    document = json.dumps({f: {n: s.model_dump() for n, s in by.items()} for f, by in table.items()}, indent=2) + "\n"
+    scores_path = out_dir / "scores.json"
+    if scores_path.exists() and not update and scores_path.read_text(encoding="utf-8") != document:
+        raise ScoresMismatchError(f"recomputed scores differ from {scores_path}; rerun with --update if the change is intended")
+    _write_predictions(predictions, out_dir / "predictions.jsonl")
+    scores_path.write_text(document, encoding="utf-8")
+    (out_dir / "summary.md").write_text(_summary(table, f"{run} · {settings.model}"), encoding="utf-8")
+    return out_dir
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(prog="booklet-nli", description="NLI of claims against Swiss voting booklets.")
     commands = parser.add_subparsers(dest="command", required=True)
@@ -54,19 +82,36 @@ def main() -> None:
     evaluate_parser = commands.add_parser("evaluate", help="predict and score a split of the public dataset")
     evaluate_parser.add_argument("--split", choices=["dev", "test"], default="dev")
     evaluate_parser.add_argument("--task", choices=["beginner", "advanced"], default="beginner")
+    reproduce_parser = commands.add_parser("reproduce", help="replay every run in data/runs.yaml and check the scores")
+    reproduce_parser.add_argument("--mode", choices=["live", "replay"], default="replay", help="replay never calls the API")
+    reproduce_parser.add_argument("--update", action="store_true", help="overwrite the committed scores instead of checking them")
     for sub in (predict_parser, evaluate_parser):
         sub.add_argument("--mode", choices=["live", "replay"], default="replay", help="replay never calls the API")
         sub.add_argument("--model", help="overrides LLM_NAME")
         context = sub.add_mutually_exclusive_group()
         context.add_argument("--pages", type=int, help="advanced task: retrieve this many pages (overrides LLM_CONTEXT_PAGES)")
         context.add_argument("--full", action="store_true", help="advanced task: give the whole booklet (the baseline)")
+        sub.add_argument("--advanced-prompt", type=Path, help="advanced prompt template (overrides LLM_ADVANCED_PROMPT)")
     args = parser.parse_args()
+
+    if args.command == "reproduce":
+        # The manifest names every model, so LLM_NAME is not needed here.
+        base = Settings(model="")
+        manifest = Manifest.load(base.runs_manifest)
+        for run in manifest.runs:
+            settings = run_settings(base, manifest, run)
+            prompts = {"beginner": settings.beginner_prompt.read_text(encoding="utf-8"), "advanced": settings.advanced_prompt.read_text(encoding="utf-8")}
+            out_dir = run_evaluation(settings, run.task, run.split, args.mode, prompts, args.update)
+            print(f"checked {out_dir.relative_to(base.results_dir)}")
+        return
 
     overrides = {"model": args.model} if args.model else {}
     if args.full:
         overrides["context_pages"] = None
     elif args.pages:
         overrides["context_pages"] = args.pages
+    if args.advanced_prompt:
+        overrides["advanced_prompt"] = args.advanced_prompt
     settings = Settings(**overrides)
     prompts = {"beginner": settings.beginner_prompt.read_text(encoding="utf-8"), "advanced": settings.advanced_prompt.read_text(encoding="utf-8")}
 
@@ -77,19 +122,5 @@ def main() -> None:
         print(f"wrote {args.output}")
         return
 
-    cases = split(load_cases(settings.dataset), settings.dev_share, settings.split_seed)[args.split]
-    if args.task == "beginner":
-        items, gold, run = [beginner_input(c) for c in cases], None, f"beginner-{args.split}"
-    else:
-        fetch_booklets(settings, [c.booklet_url for c in cases])
-        items, gold = [advanced_input(c, settings) for c in cases], GoldPages.load(settings.gold_pages)
-        context = "full" if settings.context_pages is None else f"p{settings.context_pages}"
-        run = f"advanced-{context}-{args.split}"
-    predictions = predict_all(items, settings, args.mode, prompts)
-    out_dir = settings.results_dir / settings.run_dir() / run
-    _write_predictions(predictions, out_dir / "predictions.jsonl")
-    table = breakdown(cases, predictions, gold)
-    (out_dir / "scores.json").write_text(json.dumps({f: {n: s.model_dump() for n, s in by.items()} for f, by in table.items()}, indent=2) + "\n", encoding="utf-8")
-    summary = _summary(table, f"{run} · {settings.model}")
-    (out_dir / "summary.md").write_text(summary, encoding="utf-8")
-    print(summary)
+    out_dir = run_evaluation(settings, args.task, args.split, args.mode, prompts, update=True)
+    print((out_dir / "summary.md").read_text(encoding="utf-8"))

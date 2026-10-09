@@ -59,6 +59,7 @@ class RecordingClient:
         self._mode = mode
         self._path = settings.recording_path()
         self._lock = threading.Lock()
+        self._key_locks: dict[str, threading.Lock] = {}
         self._recordings = self._load()
         self._api = api if api is not None or mode == "replay" else OpenAI(
             base_url=settings.base_url,
@@ -70,8 +71,12 @@ class RecordingClient:
         if not self._path.exists():
             return {}
         with self._path.open(encoding="utf-8") as f:
-            records = (Recording.model_validate_json(line) for line in f if line.strip())
-            return {r.key: r for r in records}
+            recordings: dict[str, Recording] = {}
+            for line in filter(str.strip, f):
+                record = Recording.model_validate_json(line)
+                # Concurrent runs once recorded some requests twice; the first record is the one replayed.
+                recordings.setdefault(record.key, record)
+            return recordings
 
     def chat(self, request: ChatRequest) -> Recording:
         key = request.key()
@@ -79,7 +84,15 @@ class RecordingClient:
             return self._recordings[key]
         if self._mode == "replay":
             raise MissingRecordingError(f"no recording for {key} in {self._path}")
+        with self._lock:
+            key_lock = self._key_locks.setdefault(key, threading.Lock())
+        # Threads asking the same question wait for the first answer instead of calling the endpoint again.
+        with key_lock:
+            if key in self._recordings:
+                return self._recordings[key]
+            return self._record(key, request)
 
+    def _record(self, key: str, request: ChatRequest) -> Recording:
         started = time.perf_counter()
         response = self._api.chat.completions.create(
             model=request.model,

@@ -31,7 +31,7 @@
       "input_tokens": 613791,
       "evidence_page_hit": null,
       "retrieval_hit": null,
-      "latency_mean_ms": 567.5135135135135,
+      "latency_mean_ms": 570.3513513513514,
       "latency_p95_ms": 1286.6
     }
   },
@@ -67,7 +67,7 @@
       "input_tokens": 401118,
       "evidence_page_hit": null,
       "retrieval_hit": null,
-      "latency_mean_ms": 537.7577319587629,
+      "latency_mean_ms": 538.3350515463917,
       "latency_p95_ms": 1130.0
     },
     "same-language": {
@@ -101,8 +101,8 @@
       "input_tokens": 212673,
       "evidence_page_hit": null,
       "retrieval_hit": null,
-      "latency_mean_ms": 624.1078431372549,
-      "latency_p95_ms": 1504.95
+      "latency_mean_ms": 631.2450980392157,
+      "latency_p95_ms": 1741.0
     }
   },
   "claim_language": {
@@ -137,7 +137,7 @@
       "input_tokens": 197615,
       "evidence_page_hit": null,
       "retrieval_hit": null,
-      "latency_mean_ms": 618.3232323232323,
+      "latency_mean_ms": 619.4545454545455,
       "latency_p95_ms": 1677.0
     },
     "fr": {
@@ -171,7 +171,7 @@
       "input_tokens": 216487,
       "evidence_page_hit": null,
       "retrieval_hit": null,
-      "latency_mean_ms": 590.939393939394,
+      "latency_mean_ms": 591.0,
       "latency_p95_ms": 1264.0
     },
     "it": {
@@ -205,7 +205,7 @@
       "input_tokens": 199689,
       "evidence_page_hit": null,
       "retrieval_hit": null,
-      "latency_mean_ms": 492.5204081632653,
+      "latency_mean_ms": 499.88775510204084,
       "latency_p95_ms": 1020.55
     }
   },
@@ -275,7 +275,7 @@
       "input_tokens": 218600,
       "evidence_page_hit": null,
       "retrieval_hit": null,
-      "latency_mean_ms": 535.5526315789474,
+      "latency_mean_ms": 536.5701754385965,
       "latency_p95_ms": 1139.0
     },
     "it": {
@@ -309,8 +309,8 @@
       "input_tokens": 203517,
       "evidence_page_hit": null,
       "retrieval_hit": null,
-      "latency_mean_ms": 576.5274725274726,
-      "latency_p95_ms": 1257.0
+      "latency_mean_ms": 584.4835164835165,
+      "latency_p95_ms": 1375.8
     }
   }
 }

@@ -20,6 +20,7 @@ class Settings(BaseSettings):
     timeout_s: float = 300.0
 
     dataset: Path = TRACK_DIR / "data" / "ost" / "v1.1.jsonl"
+    prompts_dir: Path = TRACK_DIR / "data" / "prompts"
     beginner_prompt: Path = TRACK_DIR / "data" / "prompts" / "beginner.txt"
     # The booklets exceed the 100 MB limit of data/, so they are downloaded into this cache and checked against the manifest.
     booklets_dir: Path = TRACK_DIR / "data" / "booklets"
@@ -38,6 +39,7 @@ class Settings(BaseSettings):
     split_seed: int = 20261008
     recordings_dir: Path = TRACK_DIR / "data" / "recordings"
     results_dir: Path = TRACK_DIR / "results"
+    runs_manifest: Path = TRACK_DIR / "data" / "runs.yaml"
 
     def run_dir(self) -> Path:
         # One folder per endpoint: providers spell model ids with different casing,

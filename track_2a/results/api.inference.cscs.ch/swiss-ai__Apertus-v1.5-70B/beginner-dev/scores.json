@@ -31,7 +31,7 @@
       "input_tokens": 613791,
       "evidence_page_hit": null,
       "retrieval_hit": null,
-      "latency_mean_ms": 1388.6824324324325,
+      "latency_mean_ms": 1388.293918918919,
       "latency_p95_ms": 3336.95
     }
   },
@@ -67,7 +67,7 @@
       "input_tokens": 401118,
       "evidence_page_hit": null,
       "retrieval_hit": null,
-      "latency_mean_ms": 1323.3350515463917,
+      "latency_mean_ms": 1322.7268041237114,
       "latency_p95_ms": 3011.75
     },
     "same-language": {
@@ -101,7 +101,7 @@
       "input_tokens": 212673,
       "evidence_page_hit": null,
       "retrieval_hit": null,
-      "latency_mean_ms": 1512.9705882352941,
+      "latency_mean_ms": 1513.0,
       "latency_p95_ms": 3890.0
     }
   },
@@ -137,7 +137,7 @@
       "input_tokens": 197615,
       "evidence_page_hit": null,
       "retrieval_hit": null,
-      "latency_mean_ms": 1456.7070707070707,
+      "latency_mean_ms": 1458.6262626262626,
       "latency_p95_ms": 3684.0
     },
     "fr": {
@@ -171,7 +171,7 @@
       "input_tokens": 216487,
       "evidence_page_hit": null,
       "retrieval_hit": null,
-      "latency_mean_ms": 1443.7070707070707,
+      "latency_mean_ms": 1443.7373737373737,
       "latency_p95_ms": 4249.0
     },
     "it": {
@@ -205,7 +205,7 @@
       "input_tokens": 199689,
       "evidence_page_hit": null,
       "retrieval_hit": null,
-      "latency_mean_ms": 1264.3775510204082,
+      "latency_mean_ms": 1261.234693877551,
       "latency_p95_ms": 3296.4
     }
   },
@@ -241,7 +241,7 @@
       "input_tokens": 191674,
       "evidence_page_hit": null,
       "retrieval_hit": null,
-      "latency_mean_ms": 1552.2417582417581,
+      "latency_mean_ms": 1548.857142857143,
       "latency_p95_ms": 4703.0
     },
     "fr": {
@@ -275,8 +275,8 @@
       "input_tokens": 218600,
       "evidence_page_hit": null,
       "retrieval_hit": null,
-      "latency_mean_ms": 1202.9649122807018,
-      "latency_p95_ms": 2522.0
+      "latency_mean_ms": 1204.657894736842,
+      "latency_p95_ms": 2536.75
     },
     "it": {
       "n": 91,

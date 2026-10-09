@@ -31,7 +31,7 @@
       "input_tokens": 607433,
       "evidence_page_hit": 0.7195121951219512,
       "retrieval_hit": 0.8344594594594594,
-      "latency_mean_ms": 821.9797297297297,
+      "latency_mean_ms": 822.8006756756756,
       "latency_p95_ms": 1687.9
     }
   },
@@ -67,7 +67,7 @@
       "input_tokens": 411993,
       "evidence_page_hit": 0.7264150943396226,
       "retrieval_hit": 0.8195876288659794,
-      "latency_mean_ms": 924.3865979381443,
+      "latency_mean_ms": 924.5,
       "latency_p95_ms": 2116.0
     },
     "same-language": {
@@ -101,7 +101,7 @@
       "input_tokens": 195440,
       "evidence_page_hit": 0.7068965517241379,
       "retrieval_hit": 0.8627450980392157,
-      "latency_mean_ms": 627.2058823529412,
+      "latency_mean_ms": 629.3725490196078,
       "latency_p95_ms": 1335.0
     }
   },
@@ -137,7 +137,7 @@
       "input_tokens": 208167,
       "evidence_page_hit": 0.8518518518518519,
       "retrieval_hit": 0.898989898989899,
-      "latency_mean_ms": 881.4949494949495,
+      "latency_mean_ms": 878.5959595959596,
       "latency_p95_ms": 2167.0
     },
     "fr": {
@@ -171,7 +171,7 @@
       "input_tokens": 204110,
       "evidence_page_hit": 0.7142857142857143,
       "retrieval_hit": 0.8383838383838383,
-      "latency_mean_ms": 794.0808080808081,
+      "latency_mean_ms": 795.2525252525253,
       "latency_p95_ms": 1418.0
     },
     "it": {
@@ -205,7 +205,7 @@
       "input_tokens": 195156,
       "evidence_page_hit": 0.5925925925925926,
       "retrieval_hit": 0.7653061224489796,
-      "latency_mean_ms": 790.0408163265306,
+      "latency_mean_ms": 794.265306122449,
       "latency_p95_ms": 1623.9
     }
   },
@@ -241,7 +241,7 @@
       "input_tokens": 182092,
       "evidence_page_hit": 0.7884615384615384,
       "retrieval_hit": 0.8791208791208791,
-      "latency_mean_ms": 809.7802197802198,
+      "latency_mean_ms": 810.3076923076923,
       "latency_p95_ms": 1763.6
     },
     "fr": {
@@ -275,7 +275,7 @@
       "input_tokens": 240166,
       "evidence_page_hit": 0.75,
       "retrieval_hit": 0.8245614035087719,
-      "latency_mean_ms": 823.9561403508771,
+      "latency_mean_ms": 825.2456140350877,
       "latency_p95_ms": 1957.5
     },
     "it": {
@@ -309,7 +309,7 @@
       "input_tokens": 185175,
       "evidence_page_hit": 0.6153846153846154,
       "retrieval_hit": 0.8021978021978022,
-      "latency_mean_ms": 831.7032967032967,
+      "latency_mean_ms": 832.2307692307693,
       "latency_p95_ms": 1602.6
     }
   }

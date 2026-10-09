@@ -1,0 +1,14 @@
+# Every experiment in the report. `booklet-nli reproduce` (and so `make run`) replays them from data/recordings and
+# fails if a score differs from the committed results; `--mode live` calls the endpoint for missing recordings.
+# pages: retrieved pages given to the model in the advanced task; null gives the whole booklet (the baseline).
+endpoint: https://api.inference.cscs.ch/v1
+runs:
+  - {task: beginner, model: swiss-ai/Apertus-v1.5-8B, split: dev}
+  - {task: beginner, model: swiss-ai/Apertus-v1.5-70B, split: dev}
+  - {task: advanced, model: swiss-ai/Apertus-v1.5-8B, split: dev, pages: 3}
+  - {task: advanced, model: swiss-ai/Apertus-v1.5-8B, split: dev, pages: 5}
+  - {task: advanced, model: swiss-ai/Apertus-v1.5-8B, split: dev, pages: 8}
+  - {task: advanced, model: swiss-ai/Apertus-v1.5-8B, split: dev, pages: null}
+  - {task: advanced, model: swiss-ai/Apertus-v1.5-70B, split: dev, pages: 3}
+  - {task: advanced, model: swiss-ai/Apertus-v1.5-8B, split: dev, pages: 3, prompt: advanced_v2}
+  - {task: advanced, model: swiss-ai/Apertus-v1.5-70B, split: dev, pages: 3, prompt: advanced_v2}
