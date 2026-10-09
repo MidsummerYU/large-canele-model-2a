@@ -37,3 +37,11 @@ def run_settings(settings: Settings, manifest: Manifest, run: Run) -> Settings:
         "context_pages": run.pages,
         "advanced_prompt": settings.prompts_dir / f"{run.prompt}.txt",
     })
+
+
+def run_name(task: str, split: str, settings: Settings) -> str:
+    """The results folder of a run: task, context and prompt for the advanced task, and split."""
+    if task == "beginner":
+        return f"beginner-{split}"
+    context = "full" if settings.context_pages is None else f"p{settings.context_pages}"
+    return f"advanced-{context}-{settings.advanced_prompt.stem}-{split}"

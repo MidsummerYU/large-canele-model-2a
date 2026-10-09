@@ -7,7 +7,11 @@ from booklet_nli.booklets import booklet_file, fetch_booklets
 from booklet_nli.data import Case, beginner_input, load_cases, split
 from booklet_nli.pages import GoldPages
 from booklet_nli.predict import Prediction, predict_all
-from booklet_nli.runs import Manifest, run_settings
+from booklet_nli.figures import write_figures
+from booklet_nli.pdf import build_pdf, page_count
+from booklet_nli.report_data import all_scores
+from booklet_nli.runs import Manifest, run_name, run_settings
+from booklet_nli.technical_report import write_report
 from booklet_nli.score import Scores, breakdown
 
 OUTPUT_EXCLUDE = {"parsed", "evidence_verbatim", "context_pages"}
@@ -53,13 +57,12 @@ class ScoresMismatchError(AssertionError):
 def run_evaluation(settings: Settings, task: str, split_name: str, mode: str, prompts: dict[str, str], update: bool) -> Path:
     """Predict and score one split; unless `update`, the scores must equal the committed ones."""
     cases = split(load_cases(settings.dataset), settings.dev_share, settings.split_seed)[split_name]
+    run = run_name(task, split_name, settings)
     if task == "beginner":
-        items, gold, run = [beginner_input(c) for c in cases], None, f"beginner-{split_name}"
+        items, gold = [beginner_input(c) for c in cases], None
     else:
         fetch_booklets(settings, [c.booklet_url for c in cases])
         items, gold = [advanced_input(c, settings) for c in cases], GoldPages.load(settings.gold_pages)
-        context = "full" if settings.context_pages is None else f"p{settings.context_pages}"
-        run = f"advanced-{context}-{settings.advanced_prompt.stem}-{split_name}"
     predictions = predict_all(items, settings, mode, prompts)
     out_dir = settings.results_dir / settings.run_dir() / run
     table = breakdown(cases, predictions, gold)
@@ -82,6 +85,7 @@ def main() -> None:
     evaluate_parser = commands.add_parser("evaluate", help="predict and score a split of the public dataset")
     evaluate_parser.add_argument("--split", choices=["dev", "test"], default="dev")
     evaluate_parser.add_argument("--task", choices=["beginner", "advanced"], default="beginner")
+    commands.add_parser("report-pdf", help="print technical_report.md to the submission PDF with headless Chrome")
     reproduce_parser = commands.add_parser("reproduce", help="replay every run in data/runs.yaml and check the scores")
     reproduce_parser.add_argument("--mode", choices=["live", "replay"], default="replay", help="replay never calls the API")
     reproduce_parser.add_argument("--update", action="store_true", help="overwrite the committed scores instead of checking them")
@@ -103,6 +107,15 @@ def main() -> None:
             prompts = {"beginner": settings.beginner_prompt.read_text(encoding="utf-8"), "advanced": settings.advanced_prompt.read_text(encoding="utf-8")}
             out_dir = run_evaluation(settings, run.task, run.split, args.mode, prompts, args.update)
             print(f"checked {out_dir.relative_to(base.results_dir)}")
+        for path in write_figures(all_scores(base), "dev", base.figures_dir):
+            print(f"wrote {path.relative_to(base.report_path.parent)}")
+        write_report(base)
+        print(f"wrote {base.report_path.name}")
+        return
+
+    if args.command == "report-pdf":
+        pdf = build_pdf(Settings(model=""))
+        print(f"wrote {pdf.name} ({page_count(pdf)} pages)")
         return
 
     overrides = {"model": args.model} if args.model else {}

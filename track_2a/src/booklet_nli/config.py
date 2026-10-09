@@ -29,8 +29,9 @@ class Settings(BaseSettings):
     # Retrieval: a cross-language claim is translated into the booklet's language before BM25 over the pages.
     translation_model: str = "swiss-ai/Apertus-v1.5-8B"
     # Pages given to the model in the advanced task; None gives the whole booklet (the challenge's baseline).
-    context_pages: int | None = 5
-    advanced_prompt: Path = TRACK_DIR / "data" / "prompts" / "advanced.txt"
+    # Three pages and the point-by-point prompt scored best on the dev set (data/runs.yaml).
+    context_pages: int | None = 3
+    advanced_prompt: Path = TRACK_DIR / "data" / "prompts" / "advanced_v2.txt"
     translation_max_tokens: int = 200
     user_agent: str = "booklet-nli/0.1 (Hack Apertus 2A)"
     fetch_delay_s: float = 1.0
@@ -40,6 +41,12 @@ class Settings(BaseSettings):
     recordings_dir: Path = TRACK_DIR / "data" / "recordings"
     results_dir: Path = TRACK_DIR / "results"
     runs_manifest: Path = TRACK_DIR / "data" / "runs.yaml"
+    figures_dir: Path = TRACK_DIR / "docs" / "figures"
+    report_template: Path = TRACK_DIR / "docs" / "technical_report.template.md"
+    report_path: Path = TRACK_DIR / "technical_report.md"
+    report_pdf: Path = TRACK_DIR / "LargeCaneleModel_Report.pdf"
+    # Only `booklet-nli report-pdf` needs it; override with LLM_CHROME on other systems.
+    chrome: Path = Path("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 
     def run_dir(self) -> Path:
         # One folder per endpoint: providers spell model ids with different casing,
