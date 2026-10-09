@@ -21,6 +21,8 @@ table { border-collapse: collapse; margin: 4pt 0 6pt; font-size: 8.4pt; break-in
 th, td { border-bottom: 0.5pt solid #e1e0d9; padding: 2pt 6pt 2pt 0; text-align: left; vertical-align: top; }
 th { border-bottom-color: #898781; }
 code { font-size: 8.4pt; }
+pre { font-size: 7.4pt; line-height: 1.3; white-space: pre; background: #f3f6fb; padding: 5pt 7pt; margin: 4pt 0 6pt; }
+pre code { font-size: inherit; }
 img { display: block; max-width: 100%; margin: 6pt auto 2pt; break-inside: avoid; }
 p:has(> img) + p { break-before: avoid; }
 p > em:only-child { font-size: 8.2pt; color: #52514e; }
@@ -29,7 +31,7 @@ a { color: #1c5cab; text-decoration: none; }
 
 
 def _html(report: Path) -> str:
-    body = markdown.markdown(report.read_text(encoding="utf-8"), extensions=["tables"])
+    body = markdown.markdown(report.read_text(encoding="utf-8"), extensions=["tables", "fenced_code"])
     # Images are referenced relative to the report, so the page needs the report's folder as its base.
     return (
         f'<!doctype html><html lang="en"><head><meta charset="utf-8"><base href="{report.parent.as_uri()}/">'

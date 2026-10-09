@@ -1,0 +1,316 @@
+{
+  "all": {
+    "all": {
+      "n": 1192,
+      "macro_f1": 0.8321491439459296,
+      "f1": {
+        "entailment": 0.9316129032258065,
+        "neutral": 0.7744565217391304,
+        "contradiction": 0.7903780068728521
+      },
+      "accuracy": 0.8313758389261745,
+      "confusion": {
+        "entailment": {
+          "entailment": 361,
+          "neutral": 18,
+          "contradiction": 18
+        },
+        "neutral": {
+          "entailment": 0,
+          "neutral": 285,
+          "contradiction": 114
+        },
+        "contradiction": {
+          "entailment": 17,
+          "neutral": 34,
+          "contradiction": 345
+        }
+      },
+      "unparsed": 0,
+      "evidence_verbatim": 0.41754385964912283,
+      "input_tokens": 2651209,
+      "evidence_page_hit": 0.7111111111111111,
+      "retrieval_hit": 0.8280201342281879,
+      "latency_mean_ms": 1770.9689597315437,
+      "latency_p95_ms": 3712.3
+    }
+  },
+  "pairing": {
+    "cross-language": {
+      "n": 779,
+      "macro_f1": 0.8493495949104279,
+      "f1": {
+        "entailment": 0.9568627450980391,
+        "neutral": 0.7782608695652175,
+        "contradiction": 0.8129251700680272
+      },
+      "accuracy": 0.8498074454428755,
+      "confusion": {
+        "entailment": {
+          "entailment": 244,
+          "neutral": 7,
+          "contradiction": 3
+        },
+        "neutral": {
+          "entailment": 0,
+          "neutral": 179,
+          "contradiction": 70
+        },
+        "contradiction": {
+          "entailment": 12,
+          "neutral": 25,
+          "contradiction": 239
+        }
+      },
+      "unparsed": 0,
+      "evidence_verbatim": 0.43661971830985913,
+      "input_tokens": 1751116,
+      "evidence_page_hit": 0.7147887323943662,
+      "retrieval_hit": 0.8382541720154044,
+      "latency_mean_ms": 1913.163029525032,
+      "latency_p95_ms": 3850.0
+    },
+    "same-language": {
+      "n": 413,
+      "macro_f1": 0.7983314863587736,
+      "f1": {
+        "entailment": 0.8830188679245282,
+        "neutral": 0.7681159420289856,
+        "contradiction": 0.743859649122807
+      },
+      "accuracy": 0.7966101694915254,
+      "confusion": {
+        "entailment": {
+          "entailment": 117,
+          "neutral": 11,
+          "contradiction": 15
+        },
+        "neutral": {
+          "entailment": 0,
+          "neutral": 106,
+          "contradiction": 44
+        },
+        "contradiction": {
+          "entailment": 5,
+          "neutral": 9,
+          "contradiction": 106
+        }
+      },
+      "unparsed": 0,
+      "evidence_verbatim": 0.3797909407665505,
+      "input_tokens": 900093,
+      "evidence_page_hit": 0.7038327526132404,
+      "retrieval_hit": 0.8087167070217918,
+      "latency_mean_ms": 1502.7627118644068,
+      "latency_p95_ms": 3249.2
+    }
+  },
+  "claim_language": {
+    "de": {
+      "n": 396,
+      "macro_f1": 0.7979184247538678,
+      "f1": {
+        "entailment": 0.9333333333333333,
+        "neutral": 0.70042194092827,
+        "contradiction": 0.76
+      },
+      "accuracy": 0.797979797979798,
+      "confusion": {
+        "entailment": {
+          "entailment": 119,
+          "neutral": 8,
+          "contradiction": 5
+        },
+        "neutral": {
+          "entailment": 0,
+          "neutral": 83,
+          "contradiction": 50
+        },
+        "contradiction": {
+          "entailment": 4,
+          "neutral": 13,
+          "contradiction": 114
+        }
+      },
+      "unparsed": 0,
+      "evidence_verbatim": 0.4417808219178082,
+      "input_tokens": 871132,
+      "evidence_page_hit": 0.7705479452054794,
+      "retrieval_hit": 0.8484848484848485,
+      "latency_mean_ms": 1872.239898989899,
+      "latency_p95_ms": 3763.4
+    },
+    "fr": {
+      "n": 398,
+      "macro_f1": 0.8404598933421298,
+      "f1": {
+        "entailment": 0.8749999999999999,
+        "neutral": 0.8449612403100776,
+        "contradiction": 0.801418439716312
+      },
+      "accuracy": 0.8391959798994975,
+      "confusion": {
+        "entailment": {
+          "entailment": 112,
+          "neutral": 8,
+          "contradiction": 13
+        },
+        "neutral": {
+          "entailment": 0,
+          "neutral": 109,
+          "contradiction": 24
+        },
+        "contradiction": {
+          "entailment": 11,
+          "neutral": 8,
+          "contradiction": 113
+        }
+      },
+      "unparsed": 0,
+      "evidence_verbatim": 0.4249084249084249,
+      "input_tokens": 901363,
+      "evidence_page_hit": 0.7032967032967034,
+      "retrieval_hit": 0.8190954773869347,
+      "latency_mean_ms": 1662.5678391959798,
+      "latency_p95_ms": 3370.65
+    },
+    "it": {
+      "n": 398,
+      "macro_f1": 0.8558764269291711,
+      "f1": {
+        "entailment": 0.9848484848484849,
+        "neutral": 0.7717842323651453,
+        "contradiction": 0.8109965635738833
+      },
+      "accuracy": 0.8567839195979899,
+      "confusion": {
+        "entailment": {
+          "entailment": 130,
+          "neutral": 2,
+          "contradiction": 0
+        },
+        "neutral": {
+          "entailment": 0,
+          "neutral": 93,
+          "contradiction": 40
+        },
+        "contradiction": {
+          "entailment": 2,
+          "neutral": 13,
+          "contradiction": 118
+        }
+      },
+      "unparsed": 0,
+      "evidence_verbatim": 0.38620689655172413,
+      "input_tokens": 878714,
+      "evidence_page_hit": 0.6586206896551724,
+      "retrieval_hit": 0.8165829145728644,
+      "latency_mean_ms": 1778.608040201005,
+      "latency_p95_ms": 4002.5
+    }
+  },
+  "reference_language": {
+    "de": {
+      "n": 364,
+      "macro_f1": 0.8415082374197153,
+      "f1": {
+        "entailment": 0.9435483870967741,
+        "neutral": 0.7747747747747747,
+        "contradiction": 0.8062015503875969
+      },
+      "accuracy": 0.8434065934065934,
+      "confusion": {
+        "entailment": {
+          "entailment": 117,
+          "neutral": 7,
+          "contradiction": 2
+        },
+        "neutral": {
+          "entailment": 0,
+          "neutral": 86,
+          "contradiction": 34
+        },
+        "contradiction": {
+          "entailment": 5,
+          "neutral": 9,
+          "contradiction": 104
+        }
+      },
+      "unparsed": 0,
+      "evidence_verbatim": 0.37786259541984735,
+      "input_tokens": 757527,
+      "evidence_page_hit": 0.6946564885496184,
+      "retrieval_hit": 0.8324175824175825,
+      "latency_mean_ms": 1742.2802197802198,
+      "latency_p95_ms": 3842.75
+    },
+    "fr": {
+      "n": 455,
+      "macro_f1": 0.8212904878292315,
+      "f1": {
+        "entailment": 0.8896551724137931,
+        "neutral": 0.7872340425531914,
+        "contradiction": 0.7869822485207101
+      },
+      "accuracy": 0.8197802197802198,
+      "confusion": {
+        "entailment": {
+          "entailment": 129,
+          "neutral": 10,
+          "contradiction": 15
+        },
+        "neutral": {
+          "entailment": 0,
+          "neutral": 111,
+          "contradiction": 37
+        },
+        "contradiction": {
+          "entailment": 7,
+          "neutral": 13,
+          "contradiction": 133
+        }
+      },
+      "unparsed": 0,
+      "evidence_verbatim": 0.46105919003115264,
+      "input_tokens": 1019633,
+      "evidence_page_hit": 0.7009345794392523,
+      "retrieval_hit": 0.8197802197802198,
+      "latency_mean_ms": 1713.3384615384616,
+      "latency_p95_ms": 3518.6
+    },
+    "it": {
+      "n": 373,
+      "macro_f1": 0.8362894060593581,
+      "f1": {
+        "entailment": 0.970464135021097,
+        "neutral": 0.7586206896551724,
+        "contradiction": 0.779783393501805
+      },
+      "accuracy": 0.8337801608579088,
+      "confusion": {
+        "entailment": {
+          "entailment": 115,
+          "neutral": 1,
+          "contradiction": 1
+        },
+        "neutral": {
+          "entailment": 0,
+          "neutral": 88,
+          "contradiction": 43
+        },
+        "contradiction": {
+          "entailment": 5,
+          "neutral": 12,
+          "contradiction": 108
+        }
+      },
+      "unparsed": 0,
+      "evidence_verbatim": 0.40441176470588236,
+      "input_tokens": 874049,
+      "evidence_page_hit": 0.7389705882352942,
+      "retrieval_hit": 0.8337801608579088,
+      "latency_mean_ms": 1869.265415549598,
+      "latency_p95_ms": 3662.2
+    }
+  }
+}

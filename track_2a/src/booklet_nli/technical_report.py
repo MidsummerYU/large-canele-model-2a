@@ -40,6 +40,7 @@ def report_context(settings: Settings) -> dict:
         "r": scores,
         "o": overall,
         "tpc": tpc,
+        "gold_count": {key: {label: sum(row.values()) for label, row in s["confusion"].items()} for key, s in overall.items()},
         "full_ratio": tpc["8B/advanced-full-advanced-dev"] / tpc["8B/advanced-p3-advanced-dev"],
         "recall": _retrieval_recall(settings.model_copy(update={"base_url": manifest.endpoint}), parts["dev"], gold),
         "recall_k": RECALL_PAGES,

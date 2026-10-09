@@ -12,3 +12,8 @@ runs:
   - {task: advanced, model: swiss-ai/Apertus-v1.5-70B, split: dev, pages: 3}
   - {task: advanced, model: swiss-ai/Apertus-v1.5-8B, split: dev, pages: 3, prompt: advanced_v2}
   - {task: advanced, model: swiss-ai/Apertus-v1.5-70B, split: dev, pages: 3, prompt: advanced_v2}
+  # Final configurations, scored once on the held-out test split.
+  - {task: beginner, model: swiss-ai/Apertus-v1.5-8B, split: test}
+  - {task: beginner, model: swiss-ai/Apertus-v1.5-70B, split: test}
+  - {task: advanced, model: swiss-ai/Apertus-v1.5-8B, split: test, pages: 3, prompt: advanced_v2}
+  - {task: advanced, model: swiss-ai/Apertus-v1.5-70B, split: test, pages: 3, prompt: advanced_v2}
