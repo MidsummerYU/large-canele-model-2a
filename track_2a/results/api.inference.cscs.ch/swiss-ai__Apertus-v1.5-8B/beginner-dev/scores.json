@@ -27,7 +27,8 @@
         }
       },
       "unparsed": 0,
-      "evidence_verbatim": 0.8085106382978723,
+      "quote_verbatim": 0.8085106382978723,
+      "evidence_verbatim": 0.9414893617021277,
       "input_tokens": 613791,
       "evidence_page_hit": null,
       "retrieval_hit": null,
@@ -63,7 +64,8 @@
         }
       },
       "unparsed": 0,
-      "evidence_verbatim": 0.8048780487804879,
+      "quote_verbatim": 0.8048780487804879,
+      "evidence_verbatim": 0.959349593495935,
       "input_tokens": 401118,
       "evidence_page_hit": null,
       "retrieval_hit": null,
@@ -97,7 +99,8 @@
         }
       },
       "unparsed": 0,
-      "evidence_verbatim": 0.8153846153846154,
+      "quote_verbatim": 0.8153846153846154,
+      "evidence_verbatim": 0.9076923076923077,
       "input_tokens": 212673,
       "evidence_page_hit": null,
       "retrieval_hit": null,
@@ -133,7 +136,8 @@
         }
       },
       "unparsed": 0,
-      "evidence_verbatim": 0.7903225806451613,
+      "quote_verbatim": 0.7903225806451613,
+      "evidence_verbatim": 0.9354838709677419,
       "input_tokens": 197615,
       "evidence_page_hit": null,
       "retrieval_hit": null,
@@ -167,7 +171,8 @@
         }
       },
       "unparsed": 0,
-      "evidence_verbatim": 0.9047619047619048,
+      "quote_verbatim": 0.9047619047619048,
+      "evidence_verbatim": 0.9523809523809523,
       "input_tokens": 216487,
       "evidence_page_hit": null,
       "retrieval_hit": null,
@@ -201,7 +206,8 @@
         }
       },
       "unparsed": 0,
-      "evidence_verbatim": 0.7301587301587301,
+      "quote_verbatim": 0.7301587301587301,
+      "evidence_verbatim": 0.9365079365079365,
       "input_tokens": 199689,
       "evidence_page_hit": null,
       "retrieval_hit": null,
@@ -237,7 +243,8 @@
         }
       },
       "unparsed": 0,
-      "evidence_verbatim": 0.9074074074074074,
+      "quote_verbatim": 0.9074074074074074,
+      "evidence_verbatim": 0.9629629629629629,
       "input_tokens": 191674,
       "evidence_page_hit": null,
       "retrieval_hit": null,
@@ -271,7 +278,8 @@
         }
       },
       "unparsed": 0,
-      "evidence_verbatim": 0.6666666666666666,
+      "quote_verbatim": 0.6666666666666666,
+      "evidence_verbatim": 0.8933333333333333,
       "input_tokens": 218600,
       "evidence_page_hit": null,
       "retrieval_hit": null,
@@ -305,7 +313,8 @@
         }
       },
       "unparsed": 0,
-      "evidence_verbatim": 0.8983050847457628,
+      "quote_verbatim": 0.8983050847457628,
+      "evidence_verbatim": 0.9830508474576272,
       "input_tokens": 203517,
       "evidence_page_hit": null,
       "retrieval_hit": null,

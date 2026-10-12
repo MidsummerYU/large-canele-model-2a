@@ -6,7 +6,8 @@ from pydantic import BaseModel
 from booklet_nli.client import ChatRequest, RecordingClient
 from booklet_nli.config import Settings
 from booklet_nli.data import LABELS
-from booklet_nli.nli import Verdict, is_verbatim, parse_verdict
+from booklet_nli.evidence import ground, is_verbatim
+from booklet_nli.nli import Verdict, parse_verdict
 from booklet_nli.pages import pdf_pages
 from booklet_nli.retrieve import language, query_in_booklet_language, top_pages
 
@@ -26,7 +27,7 @@ class Metrics(BaseModel):
 
 
 class Prediction(BaseModel):
-    """The challenge's output format, plus two diagnostics the scorer reads."""
+    """The challenge's output format, plus diagnostics the scorer reads."""
 
     id: str
     label: int
@@ -34,6 +35,9 @@ class Prediction(BaseModel):
     evidence: list[Evidence]
     metrics: Metrics
     parsed: bool
+    # The model's own quote is found in the passage or on the page it cites.
+    quote_verbatim: bool
+    # Every output evidence is found on its page, after grounding.
     evidence_verbatim: bool
     # Advanced task only: the pages given to the model.
     context_pages: list[int] | None = None
@@ -57,18 +61,35 @@ def _ask(prompt: str, client: RecordingClient, settings: Settings) -> tuple[Verd
     return parse_verdict(recording.content), metrics
 
 
+def _evidence(quote: str, cited: int | None, sources: dict[int | None, str], settings: Settings) -> list[Evidence]:
+    """The quote replaced by the closest source text when every part of it has a close match, else as the model wrote it."""
+    if not quote.strip():
+        return []
+    matches = ground(quote, sources, settings.evidence_min_similarity)
+    if matches is None:
+        return [Evidence(text=quote, page=cited)]
+    return [Evidence(text=m.text, page=m.page) for m in matches]
+
+
+def _verbatim(evidence: list[Evidence], sources: dict[int | None, str]) -> bool:
+    return bool(evidence) and all(e.page in sources and is_verbatim(e.text, sources[e.page]) for e in evidence)
+
+
 def predict_beginner(item: dict, client: RecordingClient, settings: Settings, prompt: str) -> Prediction:
     reference = item["reference"]["text"]
     verdict, metrics = _ask(prompt.format(reference=reference, claim=item["claim"]["text"]), client, settings)
     label = FALLBACK_LABEL if verdict.label is None else verdict.label
+    sources = {None: reference}
+    evidence = _evidence(verdict.evidence, None, sources, settings)
     return Prediction(
         id=item["id"],
         label=label,
         label_name=LABELS[label],
-        evidence=[Evidence(text=verdict.evidence)] if verdict.evidence.strip() else [],
+        evidence=evidence,
         metrics=metrics,
         parsed=verdict.label is not None,
-        evidence_verbatim=is_verbatim(verdict.evidence, reference),
+        quote_verbatim=is_verbatim(verdict.evidence, reference),
+        evidence_verbatim=_verbatim(evidence, sources),
     )
 
 
@@ -94,15 +115,19 @@ def predict_advanced(
             inference_time_ms=metrics.inference_time_ms + translation.latency_ms,
         )
     label = FALLBACK_LABEL if verdict.label is None else verdict.label
-    page = verdict.page if verdict.page in chosen else None
+    cited = verdict.page if verdict.page in chosen else None
+    # The cited page first, so that it wins a tie with another page holding the same sentence.
+    sources = {n: pages[n - 1] for n in sorted(chosen, key=lambda n: n != cited)}
+    evidence = _evidence(verdict.evidence, cited, sources, settings)
     return Prediction(
         id=item["id"],
         label=label,
         label_name=LABELS[label],
-        evidence=[Evidence(text=verdict.evidence, page=page)] if verdict.evidence.strip() else [],
+        evidence=evidence,
         metrics=metrics,
         parsed=verdict.label is not None,
-        evidence_verbatim=page is not None and is_verbatim(verdict.evidence, pages[page - 1]),
+        quote_verbatim=cited is not None and is_verbatim(verdict.evidence, pages[cited - 1]),
+        evidence_verbatim=_verbatim(evidence, sources),
         context_pages=chosen,
     )
 

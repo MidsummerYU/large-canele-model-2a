@@ -42,19 +42,21 @@ Without Docker: `uv run booklet-nli predict cases.jsonl predictions.jsonl --mode
    language than the booklet, Apertus 8B translates it for retrieval only. BM25 over the pages with the vote title
    and the claim picks the top pages (3 by default), which go into `data/prompts/advanced_v2.txt` marked
    `[Page N]`; Apertus answers with a label, a page and a quote. The original claim is what the model judges.
-3. **Checks:** the quote must appear verbatim (up to whitespace and case) in the passage or on the cited page; a
-   reply that names no label counts as neutral. The translation call is included in the reported tokens and time.
+3. **Evidence grounding:** each part of the model's quote is matched to the most similar span of the passage or the
+   given pages; if the similarity reaches `evidence_min_similarity` the output evidence is that span, verbatim, with its page,
+   otherwise the model's quote. A reply that names no label counts as neutral. The translation call is included in
+   the reported tokens and time.
 4. **Recording:** every call is stored in `data/recordings/` under a hash of the full request, with the answer,
    token usage and latency. Replays never touch the network.
-5. **Evaluation:** `booklet-nli evaluate` scores a split of the public set (macro-F1, per-class F1, evidence quoted
-   verbatim, evidence page among the gold pages, retrieval hit, tokens, latency mean and p95, by language);
+5. **Evaluation:** `booklet-nli evaluate` scores a split of the public set (macro-F1, per-class F1, quote and
+   evidence verbatim, evidence page among the gold pages, retrieval hit, tokens, latency mean and p95, by language);
    `booklet-nli reproduce` runs every entry of `data/runs.yaml` and then rebuilds the figure and the report.
 
 ## Layout
 
 | Path (under `track_2a/`) | Contents |
 |---|---|
-| `src/booklet_nli/` | `data` (cases, split), `booklets` (download, checksums), `pages` (page text, gold pages), `retrieve` (language id, BM25, translation), `nli` (reply parsing), `predict`, `score`, `client` (recording), `runs`, `cli`, `figures`, `technical_report`, `pdf` |
+| `src/booklet_nli/` | `data` (cases, split), `booklets` (download, checksums), `pages` (page text, gold pages), `retrieve` (language id, BM25, translation), `nli` (reply parsing), `evidence` (grounding quotes in the source), `predict`, `score`, `client` (recording), `runs`, `cli`, `figures`, `technical_report`, `pdf` |
 | `data/ost/` | OST public set v1.1 (MIT), booklet checksums, gold pages located in the PDFs |
 | `data/prompts/` | prompt templates |
 | `data/runs.yaml` | every experiment: task, model, split, pages, prompt |

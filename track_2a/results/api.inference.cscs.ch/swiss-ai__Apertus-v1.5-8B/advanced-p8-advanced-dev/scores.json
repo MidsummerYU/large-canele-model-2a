@@ -27,9 +27,10 @@
         }
       },
       "unparsed": 0,
-      "evidence_verbatim": 0.3218390804597701,
+      "quote_verbatim": 0.42528735632183906,
+      "evidence_verbatim": 0.8160919540229885,
       "input_tokens": 1258074,
-      "evidence_page_hit": 0.6609195402298851,
+      "evidence_page_hit": 0.6666666666666666,
       "retrieval_hit": 1.0,
       "latency_mean_ms": 2472.3310810810813,
       "latency_p95_ms": 2307.9
@@ -63,9 +64,10 @@
         }
       },
       "unparsed": 0,
-      "evidence_verbatim": 0.2909090909090909,
+      "quote_verbatim": 0.39090909090909093,
+      "evidence_verbatim": 0.7818181818181819,
       "input_tokens": 838452,
-      "evidence_page_hit": 0.6181818181818182,
+      "evidence_page_hit": 0.6272727272727273,
       "retrieval_hit": 1.0,
       "latency_mean_ms": 2746.056701030928,
       "latency_p95_ms": 2467.25
@@ -97,7 +99,8 @@
         }
       },
       "unparsed": 0,
-      "evidence_verbatim": 0.375,
+      "quote_verbatim": 0.484375,
+      "evidence_verbatim": 0.875,
       "input_tokens": 419622,
       "evidence_page_hit": 0.734375,
       "retrieval_hit": 1.0,
@@ -133,9 +136,10 @@
         }
       },
       "unparsed": 0,
-      "evidence_verbatim": 0.26229508196721313,
+      "quote_verbatim": 0.36065573770491804,
+      "evidence_verbatim": 0.7377049180327869,
       "input_tokens": 414388,
-      "evidence_page_hit": 0.6557377049180327,
+      "evidence_page_hit": 0.6885245901639344,
       "retrieval_hit": 1.0,
       "latency_mean_ms": 5187.212121212121,
       "latency_p95_ms": 4546.0
@@ -167,9 +171,10 @@
         }
       },
       "unparsed": 0,
-      "evidence_verbatim": 0.47540983606557374,
+      "quote_verbatim": 0.5737704918032787,
+      "evidence_verbatim": 0.8524590163934426,
       "input_tokens": 426541,
-      "evidence_page_hit": 0.7540983606557377,
+      "evidence_page_hit": 0.7049180327868853,
       "retrieval_hit": 1.0,
       "latency_mean_ms": 1153.919191919192,
       "latency_p95_ms": 2260.0
@@ -201,9 +206,10 @@
         }
       },
       "unparsed": 0,
-      "evidence_verbatim": 0.21153846153846154,
+      "quote_verbatim": 0.3269230769230769,
+      "evidence_verbatim": 0.8653846153846154,
       "input_tokens": 417145,
-      "evidence_page_hit": 0.5576923076923077,
+      "evidence_page_hit": 0.5961538461538461,
       "retrieval_hit": 1.0,
       "latency_mean_ms": 1061.6122448979593,
       "latency_p95_ms": 2180.4
@@ -237,9 +243,10 @@
         }
       },
       "unparsed": 0,
-      "evidence_verbatim": 0.2,
+      "quote_verbatim": 0.36,
+      "evidence_verbatim": 0.82,
       "input_tokens": 378859,
-      "evidence_page_hit": 0.7,
+      "evidence_page_hit": 0.66,
       "retrieval_hit": 1.0,
       "latency_mean_ms": 2201.2087912087914,
       "latency_p95_ms": 3392.8
@@ -271,9 +278,10 @@
         }
       },
       "unparsed": 0,
-      "evidence_verbatim": 0.3484848484848485,
+      "quote_verbatim": 0.42424242424242425,
+      "evidence_verbatim": 0.8333333333333334,
       "input_tokens": 487189,
-      "evidence_page_hit": 0.7272727272727273,
+      "evidence_page_hit": 0.7575757575757576,
       "retrieval_hit": 1.0,
       "latency_mean_ms": 2870.684210526316,
       "latency_p95_ms": 2363.5
@@ -305,9 +313,10 @@
         }
       },
       "unparsed": 0,
-      "evidence_verbatim": 0.39655172413793105,
+      "quote_verbatim": 0.4827586206896552,
+      "evidence_verbatim": 0.7931034482758621,
       "input_tokens": 392026,
-      "evidence_page_hit": 0.5517241379310345,
+      "evidence_page_hit": 0.5689655172413793,
       "retrieval_hit": 1.0,
       "latency_mean_ms": 2244.4175824175823,
       "latency_p95_ms": 2226.4

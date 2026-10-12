@@ -1,3 +1,4 @@
+import random
 from statistics import mean, quantiles
 
 from pydantic import BaseModel
@@ -13,6 +14,7 @@ class Scores(BaseModel):
     accuracy: float
     confusion: dict[str, dict[str, int]]
     unparsed: int
+    quote_verbatim: float
     evidence_verbatim: float
     input_tokens: int
     # Advanced task only: the cited page is a gold page; the pages given to the model include a gold page.
@@ -34,6 +36,28 @@ def macro_f1(gold: list[int], predicted: list[int]) -> tuple[float, dict[str, fl
     return mean(per_class.values()), per_class
 
 
+def _interval(values: list[float], confidence: float) -> tuple[float, float]:
+    ordered, tail = sorted(values), (1 - confidence) / 2
+    return ordered[int(tail * len(ordered))], ordered[int((1 - tail) * len(ordered)) - 1]
+
+
+def paired_bootstrap(
+    gold: list[int], first: list[int], second: list[int], samples: int, seed: int, confidence: float
+) -> dict[str, tuple[float, float]]:
+    """Intervals of macro-F1 for two systems on the same claims, and of their difference, from resampled claims."""
+    rng = random.Random(seed)
+    draws: dict[str, list[float]] = {"first": [], "second": [], "difference": []}
+    for _ in range(samples):
+        picked = [rng.randrange(len(gold)) for _ in gold]
+        resampled = [gold[i] for i in picked]
+        a = macro_f1(resampled, [first[i] for i in picked])[0]
+        b = macro_f1(resampled, [second[i] for i in picked])[0]
+        draws["first"].append(a)
+        draws["second"].append(b)
+        draws["difference"].append(a - b)
+    return {name: _interval(values, confidence) for name, values in draws.items()}
+
+
 def scores(cases: list[Case], predictions: list[Prediction], gold_pages: dict[str, list[int]] | None = None) -> Scores:
     by_id = {p.id: p for p in predictions}
     pairs = [(c, by_id[c.id]) for c in cases]
@@ -50,6 +74,7 @@ def scores(cases: list[Case], predictions: list[Prediction], gold_pages: dict[st
         accuracy=sum(g == p for g, p in zip(gold, predicted)) / len(pairs),
         confusion={g: {p: sum(c.label == gi and q.label == pi for c, q in pairs) for pi, p in enumerate(LABELS)} for gi, g in enumerate(LABELS)},
         unparsed=sum(not p.parsed for _, p in pairs),
+        quote_verbatim=sum(p.quote_verbatim for p in claimed) / len(claimed) if claimed else 0.0,
         evidence_verbatim=sum(p.evidence_verbatim for p in claimed) / len(claimed) if claimed else 0.0,
         input_tokens=sum(p.metrics.input_tokens or 0 for _, p in pairs),
         evidence_page_hit=sum(any(e.page in gold_pages[c.id] for e in p.evidence) for c, p in cited) / len(cited)

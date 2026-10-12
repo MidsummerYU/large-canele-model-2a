@@ -33,11 +33,16 @@ class Settings(BaseSettings):
     context_pages: int | None = 3
     advanced_prompt: Path = TRACK_DIR / "data" / "prompts" / "advanced_v2.txt"
     translation_max_tokens: int = 200
+    # A quote at least this similar to a source span is replaced by that span; chosen on the dev set.
+    evidence_min_similarity: float = 0.85
     user_agent: str = "booklet-nli/0.1 (Hack Apertus 2A)"
     fetch_delay_s: float = 1.0
     # Share of the public set used to develop the prompts; the rest is only scored.
     dev_share: float = 0.2
     split_seed: int = 20261008
+    bootstrap_samples: int = 1000
+    bootstrap_seed: int = 20261012
+    confidence: float = 0.95
     recordings_dir: Path = TRACK_DIR / "data" / "recordings"
     results_dir: Path = TRACK_DIR / "results"
     runs_manifest: Path = TRACK_DIR / "data" / "runs.yaml"

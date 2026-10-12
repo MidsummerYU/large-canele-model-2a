@@ -14,16 +14,16 @@ from booklet_nli.runs import Manifest, run_name, run_settings
 from booklet_nli.technical_report import write_report
 from booklet_nli.score import Scores, breakdown
 
-OUTPUT_EXCLUDE = {"parsed", "evidence_verbatim", "context_pages"}
+OUTPUT_EXCLUDE = {"parsed", "quote_verbatim", "evidence_verbatim", "context_pages"}
 
 
 def _summary(table: dict[str, dict[str, Scores]], title: str) -> str:
-    lines = [f"# {title}", "", "| group | n | macro-F1 | F1 entail / neutral / contra | unparsed | evidence verbatim | evidence page | retrieval hit | input tokens | latency mean / p95 ms |", "|---|---|---|---|---|---|---|---|---|---|"]
+    lines = [f"# {title}", "", "| group | n | macro-F1 | F1 entail / neutral / contra | unparsed | quote verbatim | evidence verbatim | evidence page | retrieval hit | input tokens | latency mean / p95 ms |", "|---|---|---|---|---|---|---|---|---|---|---|"]
     for field, by_name in table.items():
         for name, s in by_name.items():
             f1 = " / ".join(f"{v:.2f}" for v in s.f1.values())
             lines.append(
-                f"| {field}: {name} | {s.n} | {s.macro_f1:.3f} | {f1} | {s.unparsed} | {s.evidence_verbatim:.0%} "
+                f"| {field}: {name} | {s.n} | {s.macro_f1:.3f} | {f1} | {s.unparsed} | {s.quote_verbatim:.0%} | {s.evidence_verbatim:.0%} "
                 f"| {_share(s.evidence_page_hit)} | {_share(s.retrieval_hit)} "
                 f"| {s.input_tokens:,} | {s.latency_mean_ms:,.0f} / {s.latency_p95_ms:,.0f} |"
             )

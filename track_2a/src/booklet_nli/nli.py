@@ -31,10 +31,3 @@ def parse_verdict(text: str) -> Verdict:
         page=page if isinstance(page, int) and not isinstance(page, bool) else None,
     )
 
-
-def _normalise(text: str) -> str:
-    return " ".join(text.split()).casefold()
-
-
-def is_verbatim(evidence: str, source: str) -> bool:
-    return bool(evidence.strip()) and _normalise(evidence) in _normalise(source)
